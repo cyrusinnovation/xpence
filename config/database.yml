@@ -24,12 +24,3 @@ test:
   username: Octavius
   password:
   host: localhost
-
-production:
-  adapter: postgresql
-  database: xpence_production
-  host: localhost
-  username: Octavius
-  password: 
-  pool: 5
-  timeout: 5000
