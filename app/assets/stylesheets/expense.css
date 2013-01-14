@@ -1,0 +1,21 @@
+.submitted {
+  background-color: green;
+  opacity: .5;
+}
+
+.failed {
+  background-color: red;
+  /*opacity: .5;*/
+}
+
+.incomplete {
+  color: red;
+}
+
+.complete {
+  color: green;
+}
+
+table {
+  border-collapse: collapse;
+}

@@ -1,0 +1,52 @@
+<% if flash[:notice] %>
+  <div class='notice'><%= flash[:notice] %></div>
+<% end %>
+
+<h1>Expenses</h1>
+<% if @employee %>
+  <h2>for <%= @employee.name.titleize %></h2>
+<% elsif @statement %>
+  <h2>for statement ending <%= @statement.closingdate %></h2>
+<% end %>
+
+<% @expenses.each do |statement, expenses| %>
+  <h2 class="statementheader <%= statement %>">
+    <%= Statement.find(statement).closingdate %></h2>
+    <table class="myTable">
+      <thead>
+        <tr class="expensetable<%= statement %>">
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Vendor</th>
+          <th>Receipt Sent</th>
+          <th>Description</th>
+          <th>Client</th>
+          <th>Splits</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% expenses.each do |expense| %>
+        <tr id="<%= expense.id %>"class="expensetable<%= statement %>">
+          <%= form_for(expense) do |expense| %>
+          <td><%= expense.text_field :date, :disabled=>true %></td>
+          <td><%= expense.text_field :amount, :disabled=>true %></td>
+          <td><%= expense.text_field :vendor, :disabled=>true %></td>
+          <td><%= expense.check_box :receipt_sent %></td>
+          <td><% descs = DESCRIPTIONS.collect {|desc| [desc, desc]} %>
+              <%= expense.select(:description, descs, :prompt=> 'Select a description')%></td>
+          <td><% clients = CLIENTS.collect {|client| [client, client]} %>
+              <%= expense.select(:client, clients, :prompt=> 'Select a client')%></td>
+          <td><%= expense.autocomplete_field :splits, autocomplete_employee_name_expenses_path, 'data-delimiter' => ',' %></td>
+          
+          <td><%= expense.submit 'Submit Expense', :name => 'submitform', :class => 'expensebutton'%></td>
+          <td><%= expense.submit 'Reset Expense', :name => 'resetform', :class => 'expensebutton'%></td>
+        </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+<div id="chart">
+
+</div>

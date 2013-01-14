@@ -1,0 +1,15 @@
+<h1>THIS IS THE ADMIN DASHBOARD</h1>
+<h2>Employees</h2>
+<ul>
+  <% @employees.each do |employee| %>
+    <li><%= link_to "#{employee.name.titleize}", named_employee_expenses_path(employee.name) %></li>
+  <% end %>
+</ul>
+<h2>Statements</h2>
+<ul>
+  <% @statements.each do |statement| %>
+    <li class="statement <%= statement.get_status %>"><%= statement.closingdate %> - <%= statement.percent_done %>% done - 
+      <%= link_to 'View', statement_path(statement) %> - 
+      <%= link_to 'Download', statement_path(statement, :format => 'csv') %></li>
+  <% end %>
+</ul>

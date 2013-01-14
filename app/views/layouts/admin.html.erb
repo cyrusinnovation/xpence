@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Xpence</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div>
+    <% if current_user %>
+      Signed in as <%= current_user.name.titleize %>
+      <%= link_to 'Sign Out', signout_path %>
+    <% else %>
+    <%= link_to 'Sign in w Google Apps', 'auth/google_apps' %>
+    <% end %>
+  </div>
+  <nav>
+    <h2>Admin Navigation</h2>
+    <ul>
+      <li><%= link_to 'Dashboard', admin_dashboard_path %></li>
+      <li><%= link_to 'Create New Statement', new_statement_path %></li>
+      <li><%= link_to 'Manage Employees', employees_path %></li>
+    </ul>
+  </nav>
+
+<%= yield %>
+
+</body>
+</html>

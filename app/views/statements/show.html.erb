@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Closingdate:</b>
+  <%= @statement.closingdate %>
+</p>
+
+<p>
+  <b>Total:</b>
+  <%= number_to_currency(@statement.total_expenses) %>
+</p>
+
+<p>
+  <%= button_to "Reminder", :action => 'remind' %>
+</p>
+
+<ul>
+<% @grouped_expenses.each do |employee, expenses| %>
+  <li class="<%= employee.statement_status(@statement) %>"><%= employee.name.titleize %> - <%= complete_count(expenses) %> of <%= expenses.length %> expenses completed - 
+    <%= link_to 'Show', named_employee_expenses_path(employee.name, @statement.id) %>
+  </li>
+<% end %>
+</ul> 

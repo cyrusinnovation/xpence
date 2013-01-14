@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @employee.name.titleize %></h1>,</br>
+    <h2>You've completed <%= complete_count(@expenses) %> of <%= @expenses.length %> charges for the statement ending <%= @statement.closingdate %>. </h2>
+    <h3>
+      Please login to Xpence and submit all expenses for this statement ASAP.
+    </h3>
+    <p>
+      <%= link_to 'Complete Expenses', named_employee_expenses_url(@employee.name, @statement) %>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @expense.date %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @expense.amount %>
+</p>
+
+<p>
+  <b>Vendor:</b>
+  <%= @expense.vendor %>
+</p>
+
+<p>
+  <b>Receipt Sent:</b>
+  <%= @expense.receipt_sent %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @expense.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>
