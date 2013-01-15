@@ -26,7 +26,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-tablesorter'
 gem "paperclip", "~> 3.0"
-gem 'debugger'
+gem 'debugger', :group => :development
 gem 'omniauth-google-oauth2'
 gem 'omniauth-google-apps'
 gem 'cancan'
