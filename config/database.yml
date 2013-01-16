@@ -8,7 +8,7 @@ development:
   encoding: unicode
   database: xpence_development
   pool: 5
-  username: Octavius
+  username: octavius
   password:
   host: localhost
   
@@ -21,6 +21,6 @@ test:
   encoding: unicode
   database: xpence_test
   pool: 5
-  username: Octavius
+  username: octavius
   password:
   host: localhost
