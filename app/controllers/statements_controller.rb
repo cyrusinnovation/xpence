@@ -6,6 +6,7 @@ class StatementsController < ApplicationController
     @grouped_expenses = @statement.expenses.group_by(&:employee)
     respond_to do |format|
       format.csv { send_data @statement.to_csv }
+      format.html 
     end
   end
 
