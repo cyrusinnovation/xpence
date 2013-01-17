@@ -1,6 +1,14 @@
 require 'simplecov'
-SimpleCov.start
+require 'simplecov-rcov'
+
+SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
+SimpleCov.start do
+  add_filter "test/"
+  add_filter "config/"
+end
+
 ENV["RAILS_ENV"] = "test"
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 

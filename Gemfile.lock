@@ -149,6 +149,8 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
+    simplecov-rcov (0.2.3)
+      simplecov (>= 0.4.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -186,5 +188,6 @@ DEPENDENCIES
   rails3-jquery-autocomplete
   sass-rails (~> 3.2.3)
   simplecov (~> 0.7.1)
+  simplecov-rcov (~> 0.2.3)
   thin (~> 1.5.0)
   uglifier (>= 1.0.3)
