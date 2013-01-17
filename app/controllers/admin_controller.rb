@@ -3,7 +3,6 @@ class AdminController < ApplicationController
   before_filter :is_admin?
 
   def dashboard
-    # debugger
     @employees = Employee.all
     @statements = Statement.all
   end
