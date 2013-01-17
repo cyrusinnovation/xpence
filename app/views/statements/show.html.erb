@@ -16,7 +16,7 @@
 
 <ul>
 <% @grouped_expenses.each do |employee, expenses| %>
-  <li class="<%= employee.statement_status(@statement) %>"><%= employee.name.titleize %> - <%= complete_count(expenses) %> of <%= expenses.length %> expenses completed - 
+  <li class="<%= statement_status(@statement, employee) %>"><%= employee.name.titleize %> - <%= complete_count(expenses) %> of <%= expenses.length %> expenses completed - 
     <%= link_to 'Show', named_employee_expenses_path(employee.name, @statement.id) %>
   </li>
 <% end %>
