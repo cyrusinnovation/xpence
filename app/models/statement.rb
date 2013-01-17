@@ -56,6 +56,10 @@ class Statement < ActiveRecord::Base
   private 
 
   def to_percent(num)
-    (num * 100).to_i
+    if num.is_a?(Float)
+      (num * 100).to_i
+    else 
+      0
+    end
   end
 end
