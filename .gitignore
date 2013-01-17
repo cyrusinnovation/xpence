@@ -18,3 +18,5 @@
 *.csv
 # Ignore vim swp files
 *.swp
+# Ignore simplecov directory
+/coverage

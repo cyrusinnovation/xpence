@@ -5,10 +5,11 @@ class Employee < ActiveRecord::Base
 
   def self.update_from_omniauth(options={})
     emp = Employee.find_by_email(options[:email])
+    return nil unless emp
     emp.tap do |employee|
-      emp.provider = options[:provider]
-      emp.uid = options[:uid]
-      emp.save
+      employee.provider = options[:provider]
+      employee.uid = options[:uid]
+      employee.save
     end
   end
 
