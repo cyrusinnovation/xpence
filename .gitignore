@@ -16,3 +16,5 @@
 
 # Ignore test statement data
 *.csv
+# Ignore vim swp files
+*.swp
