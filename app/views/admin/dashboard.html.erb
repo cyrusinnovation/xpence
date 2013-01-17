@@ -8,7 +8,7 @@
 <h2>Statements</h2>
 <ul>
   <% @statements.each do |statement| %>
-    <li class="statement <%= statement.get_status %>"><%= statement.closingdate %> - <%= statement.percent_done %>% done - 
+    <li class="statement <%= statement.get_status %>"><%= statement.closingdate %> - 
       <%= link_to 'View', statement_path(statement) %> - 
       <%= link_to 'Download', statement_path(statement, :format => 'csv') %></li>
   <% end %>

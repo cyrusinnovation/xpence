@@ -25,7 +25,7 @@ class StatementsController < ApplicationController
   def create
     @statement = Statement.new(params[:statement])
     result = @statement.save
-    @statement.parse_raw_statement
+    result.parse_raw_statement
     respond_to do |format|
       if result
         format.html { redirect_to @statement, notice: 'Statement was successfully created.' }
