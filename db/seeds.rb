@@ -5,88 +5,76 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Employee.destroy_all
 
-#create employees 
-emp = Employee.create(:name=> 'bruce eckfeldt')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'rex madden')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'debbie madden')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'daniel wellman')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'paul blair')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'moss collum')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'matthew raibert')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jason reid')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'daniel ramteke')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jesse chen')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'paul infield-harm')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'matthew salerno', :admin=> true, :email=> 'msalerno@cyrusinnovation.com')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jim stewart')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'nick harsh')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'oliver stewart')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'aldric giacomoni')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jeremy leakakos')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'conrad benham')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'eric jones')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> "jacob o'donnell")
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'sean west')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jason berry')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'sam gottfried')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'robert smith')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'marc rosenberg')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'nicholas goodwin')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'matthew fowler')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jonathan drew')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'vitaliy a zakharov')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'bob nadler', :admin=> true, :email=> 'bnadler@cyrusinnovation.com')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'jeremy j fine')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'steven nunez')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'stuart childs')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'paul nikonowicz')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'david a black')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'elizabeth brown')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'najati imam')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'coleman parker')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'michael denomy')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'katherine elkin')
-puts "Created #{emp.name}"
-emp = Employee.create(:name=> 'laura dean')
-puts "Created #{emp.name}"
-puts "Created #{Employee.count} employees"
+nonadminnames = [
+  'bruce eckfeldt',
+  'rex madden',
+  'debbie madden',
+  'daniel wellman',
+  'paul blair',
+  'moss collum',
+  'matthew raibert',
+  'jason reid',
+  'daniel ramteke',
+  'jesse chen',
+  'paul infield-harm',
+  'jim stewart',
+  'nick harsh',
+  'oliver stewart',
+  'aldric giacomoni',
+  'jeremy leakakos',
+  'conrad benham',
+  'eric jones',
+  "jacob o'donnell",
+  'sean west',
+  'jason berry',
+  'sam gottfried',
+  'marc rosenberg',
+  'nicholas goodwin',
+  'matthew fowler',
+  'jonathan drew',
+  'vitaliy a zakharov',
+  'jeremy j fine',
+  'steven nunez',
+  'stuart childs',
+  'paul nikonowicz',
+  'david a black',
+  'elizabeth brown',
+  'najati imam',
+  'michael denomy',
+  'katherine elkin',
+  'laura dean'
+]
+
+adminnames = [
+  'matthew salerno',
+  'bob nadler',
+  'coleman parker',
+  'robert smith'
+]
+
+def make_email(name)
+    names = name.split(' ')
+    firstinit = names.first[0]
+    lastname = names.last.gsub("'", "")
+    firstinit + lastname + "@cyrusinnovation.com"
+end
+def create_employees(names)
+  names.each do |name|
+    email = make_email(name)
+    Employee.create(:name => name, :email => email)
+    puts "Created #{name} with #{email}"
+  end
+end
+
+def create_admin_employees(names)
+  names.each do |name|
+    email = make_email(name)
+    Employee.create(:name => name, :email => email, :admin => true)
+    puts "Created #{name} with #{email} as admin"
+  end
+end
+
+create_employees(nonadminnames)
+create_admin_employees(adminnames)
