@@ -10,6 +10,7 @@ end
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path('../../config/environment', __FILE__)
+require 'capybara/rails'
 require 'rails/test_help'
 require "mocha/setup"
 
@@ -40,4 +41,29 @@ class ActiveSupport::TestCase
       e.save
     end
   end
+end
+
+DatabaseCleaner.strategy = :truncation
+
+class ActionDispatch::IntegrationTest
+  
+  include Capybara::DSL
+
+  self.use_transactional_fixtures = false
+
+
+  teardown do 
+    DatabaseCleaner.clean
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+
+  def login_with_oauth(service = :google_apps)
+    visit "/auth/#{service}"
+  end
+  
+  Capybara.default_host = 'cyrusinnovation.com'
+
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.add_mock(:google_apps, {:uid => '12345', :name => 'foo'})
 end

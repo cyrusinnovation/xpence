@@ -9,6 +9,9 @@ group :development, :test, :production do
   gem 'pg'
 end
 
+group :test do 
+  gem 'database_cleaner'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,6 +38,7 @@ gem 'thin', '~> 1.5.0'
 gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 gem 'simplecov-rcov', '~> 0.2.3', :require => false, :group => :test
 gem 'mocha', '~> 0.13.1', :require => false, :group => :test
+gem 'capybara', '~> 2.0.2', :require => false, :group => :test
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
