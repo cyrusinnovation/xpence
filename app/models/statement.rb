@@ -17,14 +17,6 @@ class Statement < ActiveRecord::Base
     expenses.where('complete = false').empty?
   end
 
-  def get_status
-    if self.expenses.detect {|exp| exp.complete != true }
-      "incomplete"
-    else
-      "complete"
-    end
-  end
-
   def percent_done
     to_percent((self.expenses.where('complete = ?', true).count)/(self.expenses.count).to_f)
   end
