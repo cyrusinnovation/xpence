@@ -17,15 +17,6 @@ class Employee < ActiveRecord::Base
     expenses.where('statement_id = ? AND complete = true', statement.id).any?
   end
 
-  def statement_status(statement)
-    exp = expenses.where('statement_id = ?', statement.id)
-    if exp.detect{|ex| ex.complete == false}
-      "incomplete"
-    else
-      "complete"
-    end
-  end
-
   private
 
   def capitalize_name

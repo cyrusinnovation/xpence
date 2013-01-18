@@ -40,26 +40,4 @@ class EmployeeTest < ActiveSupport::TestCase
     refute emp.statement_complete?(statement), "Expected statement to be incomplete"
   end
 
-  private 
-  
-  def employee_with_expense(expense)
-    Employee.create!.tap do |e|
-      e.expenses << expense 
-      e.save
-    end
-  end
-
-  def statement_with_expense(expense)
-    Statement.create!.tap do |s|
-      s.expenses << expense
-      s.save
-    end
-  end
-
-  def expense_with_complete_status(completeness)
-    Expense.create!.tap do |e|
-      e.complete = completeness
-      e.save
-    end
-  end
 end

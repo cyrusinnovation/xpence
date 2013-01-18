@@ -8,10 +8,13 @@ class Statement < ActiveRecord::Base
   HEADERS = ["date", "amount", "vendor", "description"]
 
   def parse_raw_statement
-    # debugger
     CSV.read(rawstatement.path).each do |row|
       ExpenseParser.create_from_row(:statement => self, :row => row)
     end
+  end
+
+  def complete?
+    expenses.where('complete = false').empty?
   end
 
   def get_status
