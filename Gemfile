@@ -34,6 +34,7 @@ gem 'rails3-jquery-autocomplete'
 gem 'thin', '~> 1.5.0'
 gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 gem 'simplecov-rcov', '~> 0.2.3', :require => false, :group => :test
+gem 'mocha', '~> 0.13.1', :require => false, :group => :test
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
