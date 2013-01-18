@@ -27,9 +27,9 @@ class ActiveSupport::TestCase
     end
   end
 
-  def statement_with_expense(expense)
+  def statement_with_expense(expenses)
     Statement.create!.tap do |s|
-      s.expenses << expense
+      s.expenses << expenses
       s.save
     end
   end

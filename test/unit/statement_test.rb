@@ -14,6 +14,14 @@ class StatementTest < ActiveSupport::TestCase
     refute statement.complete?, "Expected statement to be incomplete"
   end
 
+  test "calculates the sum of expenses" do 
+    expenses = [
+      Expense.create!(:amount => 10.73),
+      Expense.create!(:amount => 20.16)
+    ]
+    statement = statement_with_expense(expenses)
+    assert_equal 30.89, statement.total_expenses
+  end
 
 
 end

@@ -35,9 +35,7 @@ class Statement < ActiveRecord::Base
   end
 
   def total_expenses
-    expenses.inject(0) do |sum, expense|
-      sum + expense.amount
-    end
+    expenses.sum('amount')
   end
 
   def employees_with_incomplete
