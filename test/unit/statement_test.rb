@@ -23,5 +23,19 @@ class StatementTest < ActiveSupport::TestCase
     assert_equal 30.89, statement.total_expenses
   end
 
+  test "#employees_with_incomplete" do 
+    expense_complete = expense_with_complete_status(true)
+    expense_incomplete = expense_with_complete_status(false) 
+
+    statement = statement_with_expense([expense_complete, expense_incomplete])
+
+    employees = [
+      employee_with_expense(expense_complete),
+      employee_with_expense(expense_incomplete)
+    ]
+
+    assert statement.employees_with_incomplete.include?(employees.last)
+    refute statement.employees_with_incomplete.include?(employees.first)
+  end
 
 end

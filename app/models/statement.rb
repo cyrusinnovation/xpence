@@ -38,12 +38,12 @@ class Statement < ActiveRecord::Base
     expenses.sum('amount')
   end
 
+  def incomplete_expenses
+    expenses.where('complete = false')
+  end
+
   def employees_with_incomplete
-    expenses = self.expenses.group_by(&:employee)
-    emps = expenses.collect do |employee, charges|
-      employee if charges.detect{|charge| charge.complete == false}
-    end
-    emps.compact
+    incomplete_expenses.map { |exp| exp.employee }.uniq
   end
 
   private 
