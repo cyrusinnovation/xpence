@@ -62,8 +62,8 @@ class ActionDispatch::IntegrationTest
     visit "/auth/#{service}"
   end
   
-  Capybara.default_host = 'cyrusinnovation.com'
+  Capybara.default_host = 'localhost:3000'
 
   OmniAuth.config.test_mode = true
-  OmniAuth.config.add_mock(:google_apps, {:uid => '12345', :name => 'foo'})
+  OmniAuth.config.add_mock(:google_apps, {:uid => '12345', :name => 'foo', :admin => true})
 end
