@@ -31,7 +31,8 @@
           <td><%= expense.text_field :date, :disabled=>true %></td>
           <td><%= expense.text_field :amount, :disabled=>true %></td>
           <td><%= expense.text_field :vendor, :disabled=>true %></td>
-          <td><%= expense.check_box :receipt_sent %></td>
+          <td><% statuses = RECEIPT_STATUSES.collect {|status| [status,status]} %>
+              <%= expense.select(:receipt_sent,statuses)%></td>
           <td><% descs = DESCRIPTIONS.collect {|desc| [desc, desc]} %>
               <%= expense.select(:description, descs, :prompt=> 'Select a description')%></td>
           <td><% clients = CLIENTS.collect {|client| [client, client]} %>

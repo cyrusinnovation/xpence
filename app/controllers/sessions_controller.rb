@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if employee.admin?
       redirect_to params[:referrer] || admin_dashboard_path
     else
-      redirect_to params[:referrer] || named_employee_expenses_path(employee.name) 
+      redirect_to params[:referrer] || named_employee_expenses_path(employee.name)
     end
   end
 
