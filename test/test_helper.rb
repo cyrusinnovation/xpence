@@ -20,6 +20,7 @@ class ActiveSupport::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
+  include FactoryGirl::Syntax::Methods
 
   def employee_with_expense(expense)
     Employee.create!.tap do |e|
@@ -48,6 +49,7 @@ DatabaseCleaner.strategy = :truncation
 class ActionDispatch::IntegrationTest
   
   include Capybara::DSL
+  include FactoryGirl::Syntax::Methods
 
   self.use_transactional_fixtures = false
 
@@ -62,8 +64,10 @@ class ActionDispatch::IntegrationTest
     visit "/auth/#{service}"
   end
   
-  Capybara.default_host = 'localhost:3000'
-
   OmniAuth.config.test_mode = true
-  OmniAuth.config.add_mock(:google_apps, {:uid => '12345', :name => 'foo', :admin => true})
+  OmniAuth.config.mock_auth[:google_apps] = OmniAuth::AuthHash.new({
+    :provider => 'google_apps',
+    :uid => '12345',
+    :info => {:email => 'msalerno@cyrusinnovation.com'}
+  })
 end

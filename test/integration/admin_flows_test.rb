@@ -1,13 +1,17 @@
 require 'test_helper'
 
 class AdminFlowsTest < ActionDispatch::IntegrationTest
+
+  setup do 
+    create :admin
+  end
+    
   
-  test "can create new employee with email address" do 
-    visit root_path
-    puts page.body
-    #click_link('Sign in w Google Apps')
-    #visit('/employees/new')
-    #assert page.has_content?('New employee'), "does not have content"
+  test "admin has field to create new employee with email address" do 
+    login_with_oauth
+    visit('/employees/new')
+    fill_in('Email', :with => 'rsmith@cyrusinnovation.com')
+    assert page.has_content?('asdkjkjh'), "does not have content"
   end
 
 end
