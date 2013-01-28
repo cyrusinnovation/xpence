@@ -4,6 +4,7 @@ class Expense < ActiveRecord::Base
   belongs_to :employee
   belongs_to :statement
 
+  NON_RESETABLE_ATTRS = ["id","created_at","updated_at","employee_id","statement_id","date","amount","vendor"]
 
   validates :client, :inclusion => { :in => CLIENTS }, :if => :client_expense?
 
@@ -13,6 +14,14 @@ class Expense < ActiveRecord::Base
 
   def has_all_info?
     true if receipt_sent == true && description != nil
+  end
+
+  def reset
+    resetable = (self.attributes.keys) - NON_RESETABLE_ATTRS 
+    resetable.each do |attr|
+      self.send("#{attr}=", nil)
+    end
+    self.save
   end
   
 end

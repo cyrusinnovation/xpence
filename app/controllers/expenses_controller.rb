@@ -36,14 +36,7 @@ class ExpensesController < ApplicationController
   def reset
     @expense = Expense.find(params[:id])
 
-    @expense.tap do |expense|
-      expense.receipt_sent = false
-      expense.description = nil
-      expense.client = nil
-      expense.splits = nil
-      expense.complete = false
-      expense.save
-    end
+    @expense.reset
 
     render :json => @expense
 
