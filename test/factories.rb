@@ -12,6 +12,11 @@ FactoryGirl.define do
    end
   end
 
+  factory :employee2, class: Employee do 
+    name "Aldric Giacomoni"
+    admin false
+  end
+
   factory :statement do 
     closingdate Date.today
   end
@@ -21,6 +26,14 @@ FactoryGirl.define do
     employee
     date Date.today
     amount 10.56
+    vendor 'Sears'
+  end
+  
+  factory :expense2, class: Expense do 
+    statement
+    association :employee, factory: :employee2, strategy: :create
+    date Date.today
+    amount 20.56
     vendor 'Sears'
   end
 end

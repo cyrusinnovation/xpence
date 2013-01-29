@@ -10,8 +10,8 @@ class ExpensesController < ApplicationController
     @employee = Employee.find_by_name(params[:employee_name])
     if can? :read, @employee.expenses.first
       expenses = @employee.expenses.group_by(&:statement_id)
-      @expenses = expenses.each do |date, expenses|
-                    expenses.sort_by!{|expense| expense.date}
+      @expenses = expenses.each do |date, charges|
+                    charges.sort_by!{|charge| charge.date}
                   end
     else
       flash[:notice] = "NOT ALLOWED TO VIEW OTHERS' EXPENSES"

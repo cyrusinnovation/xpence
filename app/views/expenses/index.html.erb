@@ -41,6 +41,7 @@
           
           <td><%= expense.submit 'Submit Expense', :name => 'submitform', :class => 'expensebutton'%></td>
           <td><%= expense.submit 'Reset Expense', :name => 'resetform', :class => 'expensebutton'%></td>
+          <td><%= expense.submit 'Complete(lock)', :name => 'lockform', :class => 'expensebutton'%></td>
         </tr>
         <% end %>
       <% end %>
