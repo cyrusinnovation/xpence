@@ -27,21 +27,23 @@
       <tbody>
       <% expenses.each do |expense| %>
         <tr id="<%= expense.id %>"class="expensetable<%= statement %>">
-          <%= form_for(expense) do |expense| %>
-          <td><%= expense.text_field :date, :disabled=>true %></td>
-          <td><%= expense.text_field :amount, :disabled=>true %></td>
-          <td><%= expense.text_field :vendor, :disabled=>true %></td>
+          <%= form_for(expense) do |expensef| %>
+          <td><%= expensef.text_field :date, :disabled=>true %></td>
+          <td><%= expensef.text_field :amount, :disabled=>true %></td>
+          <td><%= expensef.text_field :vendor, :disabled=>true %></td>
           <td><% statuses = RECEIPT_STATUSES.collect {|status| [status,status]} %>
-              <%= expense.select(:receipt_sent,statuses)%></td>
+            <%= expensef.select(:receipt_sent,statuses,{}, {:disabled=>expense.complete?}) %></td>
           <td><% descs = DESCRIPTIONS.collect {|desc| [desc, desc]} %>
-              <%= expense.select(:description, descs, :prompt=> 'Select a description')%></td>
+            <%= expensef.select(:description, descs,{:prompt => 'Select a description'},{:disabled=>expense.complete?})%></td>
           <td><% clients = CLIENTS.collect {|client| [client, client]} %>
-              <%= expense.select(:client, clients, :prompt=> 'Select a client')%></td>
-          <td><%= expense.autocomplete_field :splits, autocomplete_employee_name_expenses_path, 'data-delimiter' => ',' %></td>
+            <%= expensef.select(:client, clients,{:prompt=> 'Select a client'},{:disabled=>expense.complete?} )%></td>
+          <td><%= expensef.autocomplete_field :splits, autocomplete_employee_name_expenses_path, 'data-delimiter' => ',', :disabled=>expense.complete? %></td>
           
-          <td><%= expense.submit 'Submit Expense', :name => 'submitform', :class => 'expensebutton'%></td>
-          <td><%= expense.submit 'Reset Expense', :name => 'resetform', :class => 'expensebutton'%></td>
-          <td><%= expense.submit 'Complete(lock)', :name => 'lockform', :class => 'expensebutton'%></td>
+          <td><%= expensef.submit 'Submit Expense', :name => 'submitform', :class => 'expensebutton', :disabled=>expense.complete? %></td>
+          <% if current_user.admin? %>
+            <td><%= expensef.submit 'Reset Expense', :name => 'resetform', :class => 'expensebutton'%></td>
+            <td><%= expensef.submit 'Complete(lock)', :name => 'lockform', :class => 'expensebutton'%></td>
+        <% end %>
         </tr>
         <% end %>
       <% end %>

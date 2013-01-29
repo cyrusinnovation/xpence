@@ -15,14 +15,6 @@
     <%= link_to 'Sign in w Google Apps', 'auth/google_apps' %>
     <% end %>
   </div>
-  <% if current_user %>
-  <nav>
-    <h2>Navigation</h2>
-    <ul>
-      <li><%= link_to 'Edit Profile', edit_employee_path(current_user) %></li>
-    </ul>
-  </nav>
-  <% end %>
 <%= yield %>
 
 </body>
