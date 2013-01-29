@@ -42,6 +42,13 @@ class ExpensesController < ApplicationController
 
   end
 
+  def lock
+    @expense = Expense.find(params[:id])
+    @expense.check_and_set_complete
+
+    render :json => @expense
+  end
+
   private 
 
   def check_complete

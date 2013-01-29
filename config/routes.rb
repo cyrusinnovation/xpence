@@ -26,6 +26,8 @@ Xpence::Application.routes.draw do
 
   match '/expenses/:id/reset' => 'expenses#reset', :as => 'reset'
 
+  match '/expenses/:id/lock' => 'expenses#lock', :as => 'lock'
+
   match 'statements/:id/remind' => 'statements#remind', :as => 'statement_reminder'
 
 end

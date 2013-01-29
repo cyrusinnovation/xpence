@@ -65,12 +65,28 @@ $(document).ready(function(){
               }
           });
         }
+       else if (buttonpressed == 'lockform')
+        {
+          $.ajax({
+              url: $(this).attr('action') + '/lock',
+              type: 'POST',
+              success: function(json){
+                var id = $(this).attr('url').split('/')[2];
+                $('#' + id).find('#expense_receipt_sent').attr("disabled",'disabled');
+                $('#' + id).find('#expense_description').attr("disabled",'disabled');
+                $('#' + id).find('#expense_client').attr("disabled",'disabled');
+                $('#' + id).find('#expense_splits').attr("disabled",'disabled');
+                $('#' + id).find(".expensebutton[name='submitform']").attr("disabled",'disabled');
+                $('#' + id).find(".expensebutton[name='resetform']").attr("disabled",'disabled');
+            }
+          });
+        }
       else
         {
           var id = $(this).attr('action').split('/')[2];
-          var choices = $('#' + id).find('#splits option');
+          //var choices = $('#' + id).find('#splits option');
            var valuesToSubmit = $(this).serialize();
-           console.log(choices.length);
+           //console.log(choices.length);
           $.ajax({
               url: $(this).attr('action'),
               type: 'PUT',

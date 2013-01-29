@@ -20,4 +20,16 @@ class ExpenseTest < ActiveSupport::TestCase
     assert_equal expense.employee, employee
   end
 
+  test "#check_and_set_complete marks expense as complete" do 
+    expense = Expense.create!(
+                              :date => Date.today,
+                              :amount => 10,
+                              :vendor => 'Sears',
+                              :description => 'Professional Development',
+                              :receipt_sent => 'Email'
+                              )
+    assert_equal false, expense.complete?
+    expense.check_and_set_complete 
+    assert expense.complete?
+  end
 end

@@ -23,5 +23,10 @@ class Expense < ActiveRecord::Base
     end
     self.save
   end
+
+  def check_and_set_complete
+    self.complete = true
+    self.save
+  end
   
 end
